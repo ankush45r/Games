@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig game</title>
+    <link rel="stylesheet" href="/PIGGAME/pig.css">
+</head>
+<body>
+    <div class="body">
+        <div class="area">
+            <div class="player1 player" id="p1">
+                <h1 id="won1">PLAYER 1</h1>
+                <h1 id="curr_1">0</h1>
+                <div class="current" id="player1">
+                    <p><strong>SCORE</strong></p>
+                    <h2 id="score1">0</h2>
+                </div>
+            </div>
+            <div class="mid">
+                <button id="newdice" onclick="reset()" class="buttonStyles">NEW GAME</button>
+                <img src="dice1.png" alt="" id="dice_no" height=50 width="50">
+                <button id="rolldice" onclick="generateRandom()" class="buttonStyles">ROLL DICE</button>
+                <button id="hold" onclick="hold()" class="buttonStyles">HOLD</button>
+                <!-- <a href="../SNAKEGAME/index.html"><button class="buttonStyles">Snake game</button></a> -->
+            </div>
+            <div class="player2 player" id="p2">
+                <h1 id="won2">PLAYER 2</h1>
+                <h1 id="curr_2">0</h1>
+                <div class="current" id="player2">
+                    <p><strong>SCORE</strong></p>
+                    <h2 id="score2">0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/PIGGAME/pig.js"></script>
+</body>
+</html>

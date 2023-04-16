@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig game</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgb(0 255 220),rgb(195 110 60));
+    height: 100vh;
+    color: #743131;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.area{
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    border-radius: 20px;
+}
+
+.color1{
+    background: linear-gradient(rgb(0 67 255), #fd8f8f);
+    transition: 0.5s ease-in-out;
+}
+
+.color2{
+    background: linear-gradient(#8cc0d1,#db8787);
+        transition: 0.5s ease-in-out;
+}
+
+.win_color{
+    background-color: greenyellow;
+    transition: 0.5s ease-in-out;
+}
+
+.not_win{
+    background-color: rgb(235, 91, 7);
+    transition: 0.5S ease-in-out;
+}
+
+.player{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    
+    
+}
+
+.mid{
+    width: 20%;
+    background-color: #5a7181;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.current{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+#dice_no{
+    border-radius: 9px;
+}
+
+.buttonStyles{
+    border-radius: 29px;
+    background: linear-gradient(45deg, #743131, transparent);
+    height: 32px;
+    padding: 8px;
+    color: #00dcff;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="area">
+            <div class="player1 player" id="p1">
+                <h1 id="won1">PLAYER 1</h1>
+                <h1 id="curr_1">0</h1>
+                <div class="current" id="player1">
+                    <p><strong>SCORE</strong></p>
+                    <h2 id="score1">0</h2>
+                </div>
+            </div>
+            <div class="mid">
+                <button id="newdice" onclick="reset()" class="buttonStyles">NEW GAME</button>
+                <img src="dice1.png" alt="" id="dice_no" height=50 width="50">
+                <button id="rolldice" onclick="generateRandom()" class="buttonStyles">ROLL DICE</button>
+                <button id="hold" onclick="hold()" class="buttonStyles">HOLD</button>
+            </div>
+            <div class="player2 player" id="p2">
+                <h1 id="won2">PLAYER 2</h1>
+                <h1 id="curr_2">0</h1>
+                <div class="current" id="player2">
+                    <p><strong>SCORE</strong></p>
+                    <h2 id="score2">0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+let rolldice = document.getElementById('rolldice');
+rolldice.addEventListener(onclick, generateRandom);
+
+let target = 25;
+let p1_score = 0, p2_score = 0;
+let curr_player = 1;
+document.getElementById("p1").classList.add('color1');
+document.getElementById('p2').classList.add('color2');
+
+let curr_1 = 0, curr_2 = 0;
+
+
+
+function generateRandom() {
+    if (p1_score < 25 && p2_score < 25) {
+        let x = Math.ceil(Math.random() * 6);
+        if (x == 1) {
+            document.getElementById('dice_no').src = 'dice1.png';
+        }
+        else if (x == 2) {
+            document.getElementById('dice_no').src = 'dice2.png';
+        }
+        else if (x == 3) {
+            document.getElementById('dice_no').src = 'dice3.png';
+        }
+        else if (x == 4) {
+            document.getElementById('dice_no').src = 'dice4.png';
+        }
+        else if (x == 5) {
+            document.getElementById('dice_no').src = 'dice5.png';
+        }
+        else {
+            document.getElementById('dice_no').src = 'dice6.png';
+        }
+        if (curr_player == 1) {
+            let curr = document.getElementById('curr_1');
+            if (x != 1) {
+                curr_1 += x;
+                curr.innerHTML = curr_1;
+            }
+            else {
+                curr.innerHTML = 0;
+                curr_1 = 0;
+                curr_player = 2;
+                document.getElementById('p2').classList.add('color1');
+                document.getElementById('p2').classList.remove('color2');
+                document.getElementById('p1').classList.add('color2');
+                document.getElementById('p1').classList.remove('color1');
+            }
+        }
+        else {
+            let curr = document.getElementById('curr_2');
+            if (x != 1) {
+                curr_2 += x;
+                curr.innerHTML = curr_2;
+            }
+            else {
+                curr.innerHTML = 0;
+                curr_2 = 0;
+                curr_player = 1;
+                document.getElementById('p1').classList.add('color1');
+                document.getElementById('p1').classList.remove('color2');
+                document.getElementById('p2').classList.add('color2');
+                document.getElementById('p2').classList.remove('color1');
+            }
+        }
+    }
+
+}
+
+function hold() {
+    if (p1_score < 25 && p2_score < 25) {
+        if (curr_player == 1) {
+            p1_score += curr_1;
+            document.getElementById('score1').innerHTML = p1_score;
+            curr_1 = 0;
+            document.getElementById('curr_1').innerHTML = curr_1;
+            curr_player = 2;
+            document.getElementById('p2').classList.add('color1');
+            document.getElementById('p2').classList.remove('color2');
+            document.getElementById('p1').classList.add('color2');
+            document.getElementById('p1').classList.remove('color1');
+        }
+        else {
+            p2_score += curr_2;
+            document.getElementById('score2').innerHTML = p2_score;
+            curr_2 = 0;
+            document.getElementById('curr_2').innerHTML = curr_2;
+            curr_player = 1;
+            document.getElementById('p1').classList.add('color1');
+            document.getElementById('p1').classList.remove('color2');
+            document.getElementById('p2').classList.add('color2');
+            document.getElementById('p2').classList.remove('color1');
+        }
+        if (p1_score >= 25) {
+            document.getElementById('won1').innerHTML = "PLAYER 1 WON";
+        }
+        else if (p2_score >= 25) {
+            document.getElementById('won2').innerHTML = "PLAYER 2 WON";
+        }
+    }
+    if (p1_score >= 25) {
+        document.getElementById('won1').innerHTML = "PLAYER 1 WON";
+        document.getElementById('won2').innerHTML = "PLAYER 2 LOSE"
+        document.getElementById('p1').classList.remove('color2');
+        document.getElementById('p1').classList.add('win_color');
+        document.getElementById('p2').classList.add('not_win');
+        document.getElementById('p2').classList.remove('color1');
+    }
+    else if (p2_score >= 25) {
+        document.getElementById('won2').innerHTML = "PLAYER 2 WON";
+        document.getElementById('won1').innerHTML = "PLAYER 1 LOSE";
+        document.getElementById('p2').classList.remove('color2');
+        document.getElementById('p2').classList.add('win_color');
+        document.getElementById('p1').classList.remove('color1');
+        document.getElementById('p1').classList.add('not_win');
+    }
+
+}
+
+function reset() {
+    curr_player = 1;
+    document.getElementById("p1").classList.add('color1');
+    document.getElementById('p1').classList.remove('color2');
+    document.getElementById('p2').classList.add('color2');
+    document.getElementById('p2').classList.remove('color1');
+    document.getElementById('p1').classList.remove('not_win');
+    document.getElementById('p2').classList.remove('not_win');
+    p1_score = p2_score = curr_1 = curr_2 = 0;
+    document.getElementById('won1').innerHTML = 'PLAYER 1';
+    document.getElementById('won2').innerHTML = 'PLAYER 2';
+    document.getElementById('score1').innerHTML = p1_score;
+    document.getElementById('score2').innerHTML = p2_score;
+    document.getElementById('curr_1').innerHTML = curr_1;
+    document.getElementById('curr_2').innerHTML = curr_2;
+    
+    document.getElementById('p1').classList.remove('win_color');
+    document.getElementById('p2').classList.remove('win_color');
+
+}
+
+
+
+    </script>
+</body>
+</html>

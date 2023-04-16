@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake game</title>
+    <link rel="stylesheet" href="SNAKEGAME/CSS/snake.css">
+</head>
+
+<body>
+    <div class="body">
+        <div id="board">
+
+        </div>
+        <div class="container">
+            <div class="score_card">
+                <div class="flex">
+                    <div>Your score ::</div>
+                    <h2 id="your_score">0</h2>
+                </div>
+                <div class="flex">
+                    <div>Highest score ::</div>
+                    <h2 id="highest">0</h2>
+                </div>
+                <div class="btns">
+                    <button class="btn" onclick="play()">Play</button>
+                    <button class="btn" onclick="pause()">Pause</button>
+                    <button class="btn"><a href="/home">Home</a></button>
+                </div>
+            </div>
+            <div class="buttons">
+                <div id="up_down">
+                    <button onclick="up()" class="button">UP</button>
+                    <button onclick="down()" class="button">DOWN</button>
+                </div>
+                <div id="left_right">
+                    <button onclick="left()" class="button">LEFT</button>
+                    <button onclick="right()" class="button">RIGHT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="pigGame"><a href="https://pig-game-v1-netlify.netlify.app/"><button class="button">PIG_GAME</button></a></div> -->
+    </div>
+    <script src="SNAKEGAME/javascript/snake.js"></script>
+</body>
+
+</html>

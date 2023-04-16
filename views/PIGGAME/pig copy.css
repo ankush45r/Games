@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgb(0 255 220),rgb(195 110 60));
+    height: 100vh;
+    color: #743131;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.area{
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    border-radius: 20px;
+}
+
+.color1{
+    background: linear-gradient(rgb(0 67 255), #fd8f8f);
+    transition: 1s ease-in-out;
+}
+
+.color2{
+    background: linear-gradient(#8cc0d1,#db8787);
+    transition: 1s ease-in-out;
+}
+
+.win_color{
+    background-color: greenyellow;
+    transition: 1s ease-in-out;
+}
+
+.not_win{
+    background-color: rgb(235, 91, 7);
+    transition: 1S ease-in-out;
+}
+
+.player{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    
+    
+}
+
+.mid{
+    width: 20%;
+    background-color: #5a7181;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.current{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+#dice_no{
+    border-radius: 9px;
+}
+
+.buttonStyles{
+    border-radius: 29px;
+    background: linear-gradient(45deg, #743131, transparent);
+    height: 32px;
+    padding: 8px;
+    color: #00dcff;
+    cursor: pointer;
+}
+
+.buttonStyles:hover{
+    background: linear-gradient(green,greenyellow);
+    cursor: pointer;
+    color: black;
+    transition: 0.5s ease-in-out;
+    border: 1px solid white;
+    transform: scale(1.05);
+}
+
+@media only screen and (max-width:500px){
+    .area{
+        width: 95vw;
+    }
+
+    .buttonStyles{
+        height: 50px;
+    }
+}
